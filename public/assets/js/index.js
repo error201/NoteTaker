@@ -82,10 +82,10 @@ const handleNoteSave = () => {
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
+  e.preventDefault()
   e.stopPropagation();
 
   const note = e.target;
-  console.log(note);
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
   if (activeNote.id === noteId) {

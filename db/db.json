@@ -1,22 +1,12 @@
 [
     {
-        "id": "2904eba4-25e7-4dc1-b982-0a1191ba0abe",
-        "title": "Note 2",
-        "text": "Test text"
-    },
-    {
-        "id": "8fc3cdde-87c2-4738-9690-bd8d1afb78a8",
-        "title": "Another note",
-        "text": "here"
-    },
-    {
-        "id": "6210a22b-e52d-4e30-a68d-182cc9659c21",
-        "title": "Dentist",
-        "text": "dental exam"
-    },
-    {
-        "id": "ba0ba59e-eed0-4a93-8e11-34086a7dae1f",
+        "id": "bc296e6f-cb9d-4481-8e17-66fe4dd8a828",
         "title": "Doctor",
-        "text": "Doc Hopper"
+        "text": "get that rash checked out."
+    },
+    {
+        "id": "98b2dbb1-0ecb-4f22-9738-5c7675491c2c",
+        "title": "Tickets",
+        "text": "Buy tickets to ECCC."
     }
 ]

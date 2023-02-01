@@ -72,6 +72,8 @@ app.delete('/api/notes/:id', (req, res) => {
                 if (err) {
                     res.status(500).send("An error occurred!");
                     throw err;
+                } else{
+                    res.status(200).send("Note deleted.");
                 }
             });
         }
