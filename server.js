@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
+const { v4: uuidv4 } = require('uuid');
 
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
@@ -32,17 +33,53 @@ app.get('/api/notes', (req, res) => {
 
 // POST /api/notes route. Should take sent note and add it to the dn.json file. 
 app.post('/api/notes', (req, res) => {
-    console.log(req.body)
+    newNote = req.body;
+    newNote.id = uuidv4();
+    fs.readFile("./db/db.json", "utf-8", (err, data) => {
+        if (err) {
+            res.status(500).send("An error occurred!");
+            throw err;
+        } else {
+            const notesData = JSON.parse(data);
+            notesData.push(newNote);
+            fs.writeFile("./db/db.json", JSON.stringify(notesData, null, 4), (err) => {
+                if (err) {
+                    res.status(500).send("An error occurred!");
+                    throw err;
+                }
+            });
+        }
+    });
+    res.send(newNote);
 });
 
 // BONUS route for DELETE functionality.
-app.delete('/api/notes/:note_id', (req, res) => {
-    console.log(`Received DELETE request for /api/notes/${req.params.note_id}.`);
+app.delete('/api/notes/:id', (req, res) => {
+    fs.readFile("./db/db.json", "utf-8", (err, data) => {
+        if (err) {
+            res.status(500).send("An error occurred!");
+            throw err;
+        } else {
+            let notesData = JSON.parse(data);
+            notesData = notesData.filter((note) => {
+                if (note.id == req.params.id) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            fs.writeFile("./db/db.json", JSON.stringify(notesData, null, 4), (err) => {
+                if (err) {
+                    res.status(500).send("An error occurred!");
+                    throw err;
+                }
+            });
+        }
+    });
 });
 
 // Wildcard route retrieves index.hml.
 app.get('/*', (req, res) => {
-    console.log("Routed to wildcard.")
     res.sendFile(path.join(path.join(__dirname, '/public/index.html')))
 });
 
