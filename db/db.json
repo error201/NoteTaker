@@ -1,6 +1,12 @@
 [
     {
+        "uid": "2904eba4-25e7-4dc1-b982-0a1191ba0abd",
         "title":"Test Title",
+        "text":"Test text"
+    },
+    {
+        "uid": "2904eba4-25e7-4dc1-b982-0a1191ba0abe",
+        "title":"Note 2",
         "text":"Test text"
     }
 ]
